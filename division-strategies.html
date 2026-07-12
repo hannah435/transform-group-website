@@ -144,8 +144,20 @@
       if (toTop) toTop.classList.toggle('show', scrollY > 700);
     }, { passive: true });
     const mt = document.getElementById('menuToggle');
-    mt.addEventListener('click', () => { const o = header.classList.toggle('open'); mt.setAttribute('aria-expanded', o); });
-    document.querySelectorAll('.nav-links a, .nav .btn').forEach(a => a.addEventListener('click', () => header.classList.remove('open')));
+    const navMq = window.matchMedia('(max-width: 860px)');
+    mt.addEventListener('click', () => {
+      const o = header.classList.toggle('open'); mt.setAttribute('aria-expanded', o);
+      if (!o) document.querySelectorAll('.has-sub.sub-open').forEach(s => s.classList.remove('sub-open'));
+    });
+    document.querySelectorAll('.has-sub > a[aria-haspopup]').forEach(trigger => {
+      trigger.addEventListener('click', e => {
+        if (navMq.matches) { e.preventDefault(); trigger.closest('.has-sub').classList.toggle('sub-open'); }
+      });
+    });
+    document.querySelectorAll('.nav-links a:not([aria-haspopup]), .nav .btn').forEach(a => a.addEventListener('click', () => {
+      header.classList.remove('open');
+      document.querySelectorAll('.has-sub.sub-open').forEach(s => s.classList.remove('sub-open'));
+    }));
     if (toTop) toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
     document.querySelectorAll('.has-sub').forEach(sub => {
       const t = sub.querySelector('a[aria-haspopup]'); if (!t) return; t.setAttribute('aria-expanded', 'false');

@@ -640,11 +640,28 @@
       header.classList.toggle('scrolled', y > 20);
       toTop.classList.toggle('show', y > 700);
     }, { passive: true });
+    const navMq = window.matchMedia('(max-width: 860px)');
+    function closeMenu() {
+      header.classList.remove('open');
+      document.getElementById('menuToggle').setAttribute('aria-expanded', 'false');
+      document.querySelectorAll('.has-sub.sub-open').forEach(s => s.classList.remove('sub-open'));
+    }
     document.getElementById('menuToggle').addEventListener('click', () => {
       const open = header.classList.toggle('open');
       document.getElementById('menuToggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) document.querySelectorAll('.has-sub.sub-open').forEach(s => s.classList.remove('sub-open'));
     });
-    document.querySelectorAll('.nav-links a, .nav .btn').forEach(a => a.addEventListener('click', () => header.classList.remove('open')));
+    // on mobile, a dropdown parent toggles its submenu instead of navigating/closing
+    document.querySelectorAll('.has-sub > a[aria-haspopup]').forEach(trigger => {
+      trigger.addEventListener('click', e => {
+        if (navMq.matches) {
+          e.preventDefault();
+          trigger.closest('.has-sub').classList.toggle('sub-open');
+        }
+      });
+    });
+    // leaf links close the menu (skip the dropdown parents, which toggle)
+    document.querySelectorAll('.nav-links a:not([aria-haspopup]), .nav .btn').forEach(a => a.addEventListener('click', closeMenu));
     toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     /* ============ scroll-spy: highlight the section you're in ============ */
