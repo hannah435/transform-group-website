@@ -1747,6 +1747,12 @@
         display: none;
       }
 
+      /* cancel the desktop hover/focus centering transform on mobile (was shoving it off-screen) */
+      header.open .nav-links .has-sub:hover .submenu,
+      header.open .nav-links .has-sub:focus-within .submenu {
+        transform: none;
+      }
+
       header.open .submenu a {
         text-align: center;
       }
