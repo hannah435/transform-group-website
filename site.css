@@ -2423,17 +2423,17 @@
 
     /* animated gradient on the headline accent word */
     .hero-accent {
-      background: linear-gradient(90deg, var(--mint) 0%, var(--mint-bright) 25%, #b8fff0 50%, var(--mint-bright) 75%, var(--mint) 100%);
-      background-size: 220% auto;
+      background: linear-gradient(90deg, var(--mint-dim) 0%, var(--mint) 35%, var(--mint-bright) 50%, var(--mint) 65%, var(--mint-dim) 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: transparent;
-      animation: heroAccentShift 5s linear infinite;
+      color: var(--mint);
+      animation: heroAccentShift 6s linear infinite;
     }
 
     @keyframes heroAccentShift {
-      to { background-position: 220% center; }
+      to { background-position: -200% center; }
     }
 
     /* soft pulsing ring on the primary CTA */
