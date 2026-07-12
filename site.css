@@ -1738,7 +1738,8 @@
         backdrop-filter: none;
         max-height: 0;
         overflow: hidden;
-        padding: 0 0 0 14px;
+        padding: 0;
+        text-align: center;
         transition: max-height 0.32s ease, padding 0.32s ease;
       }
 
@@ -1746,9 +1747,13 @@
         display: none;
       }
 
+      header.open .submenu a {
+        text-align: center;
+      }
+
       header.open .has-sub.sub-open .submenu {
         max-height: 340px;
-        padding: 2px 0 10px 14px;
+        padding: 2px 0 10px;
       }
 
       header.open .has-sub .caret {
