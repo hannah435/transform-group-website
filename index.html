@@ -516,6 +516,10 @@
   </button>
 
   <script>
+    /* ============ always load at the top (no scroll restoration to a carousel) ============ */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', () => { if (!location.hash) window.scrollTo(0, 0); });
+
     /* ============ DATA ============ */
     const OUTLETS_MAIN = ["Bloomberg", "Wall Street Journal", "The New York Times", "Reuters", "Forbes", "CNBC", "Financial Times", "BBC", "NBC", "CBS", "ABC", "CNN", "Associated Press", "Fortune", "TechCrunch", "WIRED", "Barron's", "Dow Jones", "USA TODAY", "Fox News", "Le Monde", "London Guardian", "Inc.", "VentureBeat"];
     const OUTLETS_CRYPTO = ["CoinDesk", "Cointelegraph", "Decrypt", "The Block", "BeInCrypto", "Blockworks", "Bitcoin Magazine", "CoinGape", "AMBCrypto", "CryptoSlate", "Coinpedia", "CryptoPotato", "CoinSpeaker", "Crypto.news", "Yellow", "DappRadar"];
