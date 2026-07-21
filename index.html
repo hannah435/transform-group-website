@@ -462,7 +462,7 @@
         <h2>Ready to lead your category?</h2>
         <p>We build and defend industry leadership positions through superior strategy, relationships, market
           intelligence, and consistent execution.</p>
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/hannah@transformventures.io" method="POST">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/contact@transformgroup.com" method="POST">
           <input type="hidden" name="_subject" value="New inquiry from the Transform Group website">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
@@ -717,7 +717,7 @@
     const cForm = document.getElementById('contactForm');
     if (cForm) {
       const note = document.getElementById('formNote');
-      const endpoint = 'https://formsubmit.co/ajax/hannah@transformventures.io';
+      const endpoint = 'https://formsubmit.co/ajax/contact@transformgroup.com';
       const showNote = (cls, html) => { note.hidden = false; note.className = 'form-note ' + cls; note.innerHTML = html; };
       cForm.addEventListener('submit', async e => {
         e.preventDefault();
@@ -750,7 +750,7 @@
             throw new Error(data.message || 'Request failed');
           }
         } catch (err) {
-          showNote('err', 'Something went wrong. Please email us directly at <a href="mailto:hannah@transformventures.io">hannah@transformventures.io</a>.');
+          showNote('err', 'Something went wrong. Please email us directly at <a href="mailto:contact@transformgroup.com">contact@transformgroup.com</a>.');
         } finally {
           btn.disabled = false; btn.textContent = label;
         }
