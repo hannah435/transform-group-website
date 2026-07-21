@@ -1401,9 +1401,11 @@
         grid-template-columns: 1fr;
       }
 
+      /* mobile timeline: clean vertical list with a connecting line through the nodes */
       .tl-items {
         grid-template-columns: 1fr;
         gap: 0;
+        margin-left: 2px;
       }
 
       .tl-line,
@@ -1412,26 +1414,37 @@
       }
 
       .tl-item {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 18px;
-        padding: 16px 0;
-        border-left: 2px solid var(--line);
-        padding-left: 24px;
-        margin-left: 8px;
+        display: block;
+        position: relative;
+        padding: 0 0 30px 34px;
+      }
+
+      /* connecting line segment (not after the last item) */
+      .tl-item:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 7px;
+        top: 8px;
+        bottom: -8px;
+        width: 2px;
+        background: var(--line);
       }
 
       .tl-node {
-        margin: 4px 0;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        margin: 0;
       }
 
       .tl-year {
-        grid-column: 2;
+        font-size: 21px;
+        margin-bottom: 8px;
       }
 
       .tl-item p {
-        grid-column: 2;
-        margin-top: 4px;
+        margin-top: 0;
+        max-width: none;
       }
     }
 
