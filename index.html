@@ -462,7 +462,11 @@
         <h2>Ready to lead your category?</h2>
         <p>We build and defend industry leadership positions through superior strategy, relationships, market
           intelligence, and consistent execution.</p>
-        <form class="contact-form" id="contactForm" novalidate>
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/hannah@transformgroup.com" method="POST">
+          <input type="hidden" name="_subject" value="New inquiry from the Transform Group website">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <div class="row">
             <div><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
             <div><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
@@ -470,6 +474,7 @@
           <div><label for="cf-company">Company</label><input id="cf-company" name="company" type="text" autocomplete="organization"></div>
           <div><label for="cf-msg">How can we help?</label><textarea id="cf-msg" name="message" required></textarea></div>
           <button class="btn" type="submit">Partner With Us</button>
+          <p class="form-note" id="formNote" role="status" hidden></p>
         </form>
         <div class="contact-meta">
           <div><b>Email</b>info@transformgroup.com</div>
@@ -705,20 +710,47 @@
       });
     });
 
-    /* ============ contact form → composes an email (no backend) ============ */
+    /* ============ contact form → Formsubmit (AJAX, stays on page) ============ */
     const cForm = document.getElementById('contactForm');
     if (cForm) {
-      cForm.addEventListener('submit', e => {
+      const note = document.getElementById('formNote');
+      const endpoint = 'https://formsubmit.co/ajax/hannah@transformgroup.com';
+      const showNote = (cls, html) => { note.hidden = false; note.className = 'form-note ' + cls; note.innerHTML = html; };
+      cForm.addEventListener('submit', async e => {
         e.preventDefault();
         if (!cForm.reportValidity()) return;
+        const btn = cForm.querySelector('button[type=submit]');
+        const label = btn.textContent;
+        btn.disabled = true; btn.textContent = 'Sending…';
+        note.hidden = true;
         const val = id => document.getElementById(id).value.trim();
-        const name = val('cf-name');
-        const email = val('cf-email');
-        const company = val('cf-company');
-        const message = val('cf-msg');
-        const subject = encodeURIComponent(`New inquiry from ${name}${company ? ' (' + company + ')' : ''}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\n${message}`);
-        window.location.href = `mailto:info@transformgroup.com?subject=${subject}&body=${body}`;
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name: val('cf-name'),
+              email: val('cf-email'),
+              company: val('cf-company'),
+              message: val('cf-msg'),
+              _subject: 'New inquiry from the Transform Group website',
+              _template: 'table'
+            })
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && (data.success === 'true' || data.success === true)) {
+            cForm.reset();
+            showNote('ok', "Thanks, your message is on its way. We'll be in touch shortly.");
+          } else if (data.message && /confirm|activat/i.test(data.message)) {
+            showNote('ok', "Almost there — please check the inbox to confirm the form (one-time). After that, submissions send automatically.");
+          } else {
+            throw new Error(data.message || 'Request failed');
+          }
+        } catch (err) {
+          showNote('err', 'Something went wrong. Please email us directly at <a href="mailto:hannah@transformgroup.com">hannah@transformgroup.com</a>.');
+        } finally {
+          btn.disabled = false; btn.textContent = label;
+        }
       });
     }
 

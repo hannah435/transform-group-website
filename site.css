@@ -2464,3 +2464,29 @@
     .pulse-cta:hover {
       animation: none;
     }
+
+    /* contact form status note */
+    .form-note {
+      margin: 2px 0 0;
+      font-size: 14px;
+      line-height: 1.5;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .form-note.ok {
+      background: rgba(95, 211, 162, 0.1);
+      border: 1px solid rgba(95, 211, 162, 0.35);
+      color: var(--mint);
+    }
+
+    .form-note.err {
+      background: rgba(255, 120, 120, 0.08);
+      border: 1px solid rgba(255, 120, 120, 0.3);
+      color: #ffb4b4;
+    }
+
+    .form-note a {
+      color: inherit;
+      text-decoration: underline;
+    }
