@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://hannah435.github.io/transform-group-website/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://hannah435.github.io/transform-group-website/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://hannah435.github.io/transform-group-website/team.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hannah435.github.io/transform-group-website/division-pr.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hannah435.github.io/transform-group-website/division-strategies.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hannah435.github.io/transform-group-website/division-events.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hannah435.github.io/transform-group-website/socialradius.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
