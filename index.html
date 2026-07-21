@@ -774,7 +774,10 @@
       function go(i) {
         const c = cards(); if (!c.length) return;
         idx = (i + c.length) % c.length;
-        c[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        const card = c[idx];
+        // scroll ONLY the carousel horizontally — never the page
+        const left = card.offsetLeft - (grid.clientWidth - card.offsetWidth) / 2;
+        grid.scrollTo({ left, behavior: 'smooth' });
       }
       function syncIdx() {
         const c = cards(); if (!c.length) return;
