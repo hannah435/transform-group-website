@@ -2496,3 +2496,45 @@
         transform: none;
       }
     }
+
+    /* mobile: team cards become a smaller swipeable, auto-advancing carousel */
+    @media (max-width: 860px) {
+      .team-cards {
+        display: flex;
+        position: relative;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 14px;
+        padding-bottom: 14px;
+        max-width: none;
+        margin: 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .team-cards::-webkit-scrollbar {
+        display: none;
+      }
+
+      .team-cards .tmember {
+        flex: 0 0 62%;
+        scroll-snap-align: center;
+        padding: 14px 14px 20px;
+      }
+
+      .team-cards .tmember.reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* shorter photo so cards aren't overwhelming */
+      .team-cards .tphoto {
+        aspect-ratio: 1 / 1;
+        margin-bottom: 14px;
+      }
+
+      .team-cards .tmember h3 {
+        font-size: 17px;
+      }
+    }

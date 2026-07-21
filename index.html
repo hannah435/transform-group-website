@@ -128,7 +128,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=5">
+  <link rel="stylesheet" href="site.css?v=6">
   <!-- Tailwind (Play CDN, dev preview) — preflight disabled so it doesn't reset the existing site styles -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -762,13 +762,13 @@
       });
     });
 
-    /* ============ mobile divisions carousel: swipe + auto-advance every 4s ============ */
-    (function () {
-      const grid = document.querySelector('.div-grid');
-      const section = document.getElementById('divisions');
+    /* ============ mobile carousels (divisions + team): swipe + auto-advance every 4s ============ */
+    function initCarousel(gridSel, sectionId) {
+      const grid = document.querySelector(gridSel);
+      const section = document.getElementById(sectionId);
       if (!grid || !section) return;
       const mq = window.matchMedia('(max-width: 860px)');
-      const cards = () => [...grid.querySelectorAll('.division')];
+      const cards = () => [...grid.children];
       let idx = 0, timer = null, resume = null;
 
       function go(i) {
@@ -792,7 +792,9 @@
 
       new IntersectionObserver(([e]) => { e.isIntersecting ? play() : pause(); }, { threshold: 0.25 }).observe(section);
       mq.addEventListener('change', () => { pause(); if (mq.matches) play(); });
-    })();
+    }
+    initCarousel('.div-grid', 'divisions');
+    initCarousel('.team-cards', 'team');
 
     /* ============ hero 3D logo: cursor-driven tilt ============ */
     (function () {
