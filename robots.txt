@@ -41,4 +41,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://hannah435.github.io/transform-group-website/sitemap.xml
+Sitemap: https://www.transformgroup.com/sitemap.xml
