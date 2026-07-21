@@ -2085,51 +2085,14 @@
     .hero-scrim { display: none; }
 
     @media (max-width: 860px) {
-      /* mobile hero: glowing logo sits behind the copy as a lit backdrop (adds no height) */
+      /* mobile hero: clean text only — 3D logo watermark hidden */
       .hero {
-        position: relative;
-        overflow: hidden;
         min-height: auto;
         padding: 100px 0 56px;
       }
-      .hero3d {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 72%;
-        max-width: 300px;
-        margin: 0;
-        opacity: 0.9;
-        z-index: 0;
-        pointer-events: none;
-      }
-      /* keep the neon light */
-      .hero3d-glow {
-        display: block;
-        opacity: 0.85;
-      }
-      .hero3d-img {
-        filter: drop-shadow(0 0 46px rgba(31, 224, 137, 0.55));
-      }
-      .hero3d-float {
-        animation: hero3dFloat 7s ease-in-out infinite;
-      }
-      /* dark scrim: darker in the middle (behind text), lets the glow bleed at the edges */
+      .hero3d,
       .hero-scrim {
-        display: block;
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background: radial-gradient(ellipse 70% 48% at 50% 50%,
-            rgba(6, 11, 9, 0.6) 0%,
-            rgba(6, 11, 9, 0.35) 60%,
-            rgba(6, 11, 9, 0.08) 100%);
-        pointer-events: none;
-      }
-      .hero-copy {
-        position: relative;
-        z-index: 1;
+        display: none;
       }
     }
 
