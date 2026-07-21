@@ -128,7 +128,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=4">
+  <link rel="stylesheet" href="site.css?v=5">
   <!-- Tailwind (Play CDN, dev preview) — preflight disabled so it doesn't reset the existing site styles -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -761,6 +761,38 @@
         card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
       });
     });
+
+    /* ============ mobile divisions carousel: swipe + auto-advance every 4s ============ */
+    (function () {
+      const grid = document.querySelector('.div-grid');
+      const section = document.getElementById('divisions');
+      if (!grid || !section) return;
+      const mq = window.matchMedia('(max-width: 860px)');
+      const cards = () => [...grid.querySelectorAll('.division')];
+      let idx = 0, timer = null, resume = null;
+
+      function go(i) {
+        const c = cards(); if (!c.length) return;
+        idx = (i + c.length) % c.length;
+        c[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+      function syncIdx() {
+        const c = cards(); if (!c.length) return;
+        const mid = grid.scrollLeft + grid.clientWidth / 2;
+        let best = 0, bd = Infinity;
+        c.forEach((card, i) => { const cm = card.offsetLeft + card.offsetWidth / 2; const d = Math.abs(cm - mid); if (d < bd) { bd = d; best = i; } });
+        idx = best;
+      }
+      function play() { if (timer || !mq.matches) return; timer = setInterval(() => go(idx + 1), 4000); }
+      function pause() { clearInterval(timer); timer = null; }
+
+      grid.addEventListener('scroll', syncIdx, { passive: true });
+      ['pointerdown', 'touchstart', 'wheel'].forEach(ev =>
+        grid.addEventListener(ev, () => { pause(); clearTimeout(resume); resume = setTimeout(play, 5000); }, { passive: true }));
+
+      new IntersectionObserver(([e]) => { e.isIntersecting ? play() : pause(); }, { threshold: 0.25 }).observe(section);
+      mq.addEventListener('change', () => { pause(); if (mq.matches) play(); });
+    })();
 
     /* ============ hero 3D logo: cursor-driven tilt ============ */
     (function () {

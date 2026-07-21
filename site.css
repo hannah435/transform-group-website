@@ -2466,3 +2466,33 @@
       color: inherit;
       text-decoration: underline;
     }
+
+    /* mobile: divisions become a swipeable, auto-advancing carousel */
+    @media (max-width: 860px) {
+      .div-grid {
+        display: flex;
+        position: relative;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 14px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .div-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .div-grid .division {
+        flex: 0 0 88%;
+        scroll-snap-align: center;
+      }
+
+      /* keep every card rendered inside the horizontal scroller */
+      .div-grid .division.reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
