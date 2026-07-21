@@ -2538,3 +2538,43 @@
         font-size: 17px;
       }
     }
+
+    /* mobile: compact contact form so it fits the screen */
+    @media (max-width: 560px) {
+      .contact-card {
+        padding: 30px 18px;
+      }
+
+      .contact-card h2 {
+        font-size: 30px;
+      }
+
+      .contact-card p {
+        font-size: 15px;
+        margin-bottom: 22px;
+      }
+
+      .contact-form {
+        gap: 11px;
+      }
+
+      .contact-form label {
+        margin-bottom: 4px;
+        font-size: 10.5px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 9px;
+      }
+
+      .contact-form textarea {
+        min-height: 84px;
+      }
+
+      .contact-form .btn {
+        padding: 12px 20px;
+      }
+    }
