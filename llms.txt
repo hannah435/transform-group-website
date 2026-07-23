@@ -15,16 +15,16 @@
 
 ## Divisions
 
-- TransformPR — full-service media relations, podcast placement, thought leadership, and social outreach (SocialRadius): /division-pr.html
-- TransformStrategies — business development, tokenomics, and AI strategy: /division-strategies.html
-- TransformEvents — conference speaking, panel bookings, and sponsorship; sister brands BitAngels and Tokenize!: /division-events.html
-- SocialRadius — pioneering, award-winning social media agency (Webby, Cannes Titanium Lion, Emmy), now part of Transform Ventures: /socialradius.html
+- TransformPR — full-service media relations, podcast placement, thought leadership, and social outreach (SocialRadius): /division-pr
+- TransformStrategies — business development, tokenomics, and AI strategy: /division-strategies
+- TransformEvents — conference speaking, panel bookings, and sponsorship; sister brands BitAngels and Tokenize!: /division-events
+- SocialRadius — pioneering, award-winning social media agency (Webby, Cannes Titanium Lion, Emmy), now part of Transform Ventures: /socialradius
 
 ## Pages
 
 - Home: /
-- Team / leadership: /team.html
-- Divisions: /division-pr.html, /division-strategies.html, /division-events.html, /socialradius.html
+- Team / leadership: /team
+- Divisions: /division-pr, /division-strategies, /division-events, /socialradius
 
 ## Media coverage
 
